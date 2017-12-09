@@ -1,0 +1,7 @@
+#======================================================
+# MySQL settings
+#======================================================
+MYSQL_ROOT_PASSWORD=1234
+MYSQL_USER=user
+MYSQL_PASSWORD=1234
+MYSQL_DATABASE=application

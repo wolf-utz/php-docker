@@ -1,0 +1,51 @@
+version: '2'
+services:
+  #======================================================
+  # Web server
+  #======================================================
+  webserver:
+    build:
+      context: .
+      dockerfile: .build/docker/webserver/Nginx.Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./app/:/app
+      - ./log:/var/log/nginx
+  #======================================================
+  # PHP
+  #======================================================
+  php:
+    build:
+      context: .
+      dockerfile: .build/docker/php/PHP-7-FPM.Dockerfile
+    volumes:
+        - ./app:/app
+        - ./log:/var/log/upstart/
+  #======================================================
+  # Database
+  #======================================================
+  database:
+    build:
+      context: .
+      dockerfile: .build/docker/database/MariaDB-10.Dockerfile
+    ports:
+      - 3306:3306
+    volumes:
+      - .database:/var/lib/mysql
+    env_file:
+     - .configuration/enviroment/mysql.yml
+  #======================================================
+  # Mail
+  #======================================================
+  mail:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+  #======================================================
+  # Adminer
+  #======================================================
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
