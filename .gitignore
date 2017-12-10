@@ -1,3 +1,5 @@
 app/
 log/
 .database/
+.idea/
+.DS_Storage
