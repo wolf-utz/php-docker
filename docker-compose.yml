@@ -19,7 +19,7 @@ services:
     container_name: php
     build:
       context: .
-      dockerfile: .build/docker/php/PHP-7-1-FPM.Dockerfile
+      dockerfile: .build/docker/php/PHP-7-0-FPM.Dockerfile
     volumes:
         - ./app:/app
   #======================================================
