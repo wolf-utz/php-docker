@@ -19,7 +19,7 @@ services:
     container_name: php
     build:
       context: .
-      dockerfile: .build/docker/php/PHP-7-2-FPM.Dockerfile
+      dockerfile: .build/docker/php/PHP-7-0-FPM-xdebug.Dockerfile
     volumes:
         - ./app:/app
   #======================================================
@@ -43,7 +43,7 @@ services:
     container_name: mailhog
     image: mailhog/mailhog
     ports:
-      - "8025:8025"
+      - 8025:8025
   #======================================================
   # Adminer
   #======================================================
@@ -51,4 +51,4 @@ services:
     container_name: adminer
     image: adminer
     ports:
-      - "8080:8080"
+      - 8080:8080
