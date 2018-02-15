@@ -3,3 +3,4 @@ log/
 .database/
 .idea/
 .DS_Storage
+.vs-code

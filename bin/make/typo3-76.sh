@@ -1,15 +1,21 @@
 #!/bin/bash
+
+echo "TYPO3 installation is starting! Plaese wait until the proccess is over."
 # Create needed dirs.
 mkdir -p app/web
 # Download src.
+echo "Downloading TYPO3..."
 curl -L get.typo3.org/7.6 --output app/typo3_src-7.6.tar.gz
 # extract src.
-tar -xzf app/typo3_src-7.6.tar.gz -C app/ && mv app/typo3_src*/ app/typo3_src
+echo "Extracting TYPO3..."
+tar -xzf app/typo3_src-7.6.tar.gz -C app/
 # Create symlinks
-
-ln -s $(shell pwd)/app/typo3_src 				$(shell pwd)/app/web/typo3_src
-ln -s $(shell pwd)/app/web/typo3_src/typo3 		$(shell pwd)/app/web/typo3
-ln -s $(shell pwd)/app/web/typo3_src/index.php 	$(shell pwd)/app/web/index.php
-ln -s $(shell pwd)/app/web/typo3_src/_.htaccess $(shell pwd)/app/web/.htaccess
+echo "Create symlinks..."
+cd /app/web
+ln -s ../typo3_src*/ typo3_src
+ln -s typo3_src/typo3 typo3
+ln -s typo3_src/index.php index.php
+ln -s typo3_src/_.htaccess .htaccess
 # Create first install file.
-touch app/web/FIRST_INSTALL
+touch FIRST_INSTALL
+echo "Your Application is ready!"
