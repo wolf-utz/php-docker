@@ -11,7 +11,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./app/:/app
+      - ./app/:/app:cached
   #======================================================
   # PHP
   #======================================================
@@ -19,9 +19,9 @@ services:
     container_name: php
     build:
       context: .
-      dockerfile: .build/docker/php/PHP-7-0-FPM-xdebug.Dockerfile
+      dockerfile: .build/docker/php/PHP-7-0-FPM.Dockerfile
     volumes:
-        - ./app:/app
+        - ./app:/app:cached
   #======================================================
   # Database
   #======================================================
@@ -33,7 +33,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - .database:/var/lib/mysql
+      - .database:/var/lib/mysql:cached
     env_file:
      - .configuration/enviroment/mysql.yml
   #======================================================

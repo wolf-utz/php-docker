@@ -21,8 +21,5 @@ RUN apt-get update && \
 # Install apcu.
 RUN pecl install apcu \
  	&& docker-php-ext-enable apcu
-# Install xdebug.
-RUN pecl install xdebug \
-	&& docker-php-ext-enable xdebug
 # Add addition php configuration.
 ADD .configuration/additional-php.ini   /usr/local/etc/php/conf.d/z99-additional-php.ini
