@@ -1,4 +1,5 @@
 app/
+!.build/docker/app
 log/
 .database/
 .idea/

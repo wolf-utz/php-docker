@@ -1,54 +1,48 @@
 version: '2'
 services:
   #======================================================
-  # Web server
+  # APP
   #======================================================
-  webserver:
-    container_name: webserver
+  app:
+    container_name: app
     build:
       context: .
-      dockerfile: .build/docker/webserver/Nginx.Dockerfile
+      dockerfile: .build/docker/app/PHP-5-6_Apache.Dockerfile
     ports:
       - 80:80
-    volumes:
-      - ./app/:/app:cached
-  #======================================================
-  # PHP
-  #======================================================
-  php:
-    container_name: php
-    build:
-      context: .
-      dockerfile: .build/docker/php/PHP-7-0-FPM.Dockerfile
+      - 443:443
     volumes:
         - ./app:/app:cached
-  #======================================================
-  # Database
-  #======================================================
-  database:
-    container_name: database
-    build:
-      context: .
-      dockerfile: .build/docker/database/MariaDB-10.Dockerfile
-    ports:
-      - 3306:3306
-    volumes:
-      - .database:/var/lib/mysql:cached
-    env_file:
-     - .configuration/enviroment/mysql.yml
-  #======================================================
-  # Mailhog
-  #======================================================
-  mailhog:
-    container_name: mailhog
-    image: mailhog/mailhog
-    ports:
-      - 8025:8025
-  #======================================================
-  # Adminer
-  #======================================================
-  adminer:
-    container_name: adminer
-    image: adminer
-    ports:
-      - 8080:8080
+
+#  #======================================================
+#  # Database
+#  #======================================================
+#  database:
+#    container_name: database
+#    build:
+#      context: .
+#      dockerfile: .build/docker/database/MariaDB-10.Dockerfile
+#    ports:
+#      - 3306:3306
+#    volumes:
+#      - .database:/var/lib/mysql:cached
+#    env_file:
+#     - .configuration/enviroment/mysql.yml
+
+#  #======================================================
+#  # Mailhog
+#  #======================================================
+#  mailhog:
+#    container_name: mailhog
+#    image: mailhog/mailhog
+#    ports:
+#      - 8025:8025
+
+#  #======================================================
+#  # Adminer
+#  #======================================================
+#  adminer:
+#    container_name: adminer
+#    image: adminer
+#    ports:
+#      - 8080:8080
