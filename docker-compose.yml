@@ -7,27 +7,27 @@ services:
     container_name: app
     build:
       context: .
-      dockerfile: .build/docker/app/PHP-5-6_Apache.Dockerfile
+      dockerfile: .build/docker/app/PHP-7-0_Apache.Dockerfile
     ports:
       - 80:80
       - 443:443
     volumes:
         - ./app:/app:cached
 
-#  #======================================================
-#  # Database
-#  #======================================================
-#  database:
-#    container_name: database
-#    build:
-#      context: .
-#      dockerfile: .build/docker/database/MariaDB-10.Dockerfile
-#    ports:
-#      - 3306:3306
-#    volumes:
-#      - .database:/var/lib/mysql:cached
-#    env_file:
-#     - .configuration/enviroment/mysql.yml
+  #======================================================
+  # Database
+  #======================================================
+  database:
+    container_name: database
+    build:
+      context: .
+      dockerfile: .build/docker/database/MariaDB-10.Dockerfile
+    ports:
+      - 3306:3306
+    volumes:
+      - .database:/var/lib/mysql:cached
+    env_file:
+     - .configuration/enviroment/mysql.yml
 
 #  #======================================================
 #  # Mailhog

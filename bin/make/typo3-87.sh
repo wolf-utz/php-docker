@@ -5,10 +5,10 @@ echo "TYPO3 installation is starting! Please wait until the process is over."
 mkdir -p app/web
 # Download src.
 echo "Downloading TYPO3..."
-curl -L get.typo3.org/7.6 --output app/typo3_src-7.6.tar.gz
+curl -L get.typo3.org/8.7 --output app/typo3_src-8.7.tar.gz
 # extract src.
 echo "Extracting TYPO3..."
-tar -xzf app/typo3_src-7.6.tar.gz -C app/
+tar -xzf app/typo3_src-8.7.tar.gz -C app/
 # Create symlinks
 echo "Create symlinks..."
 cd /app/web
