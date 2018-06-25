@@ -16,6 +16,7 @@ ln -s ../typo3_src*/ typo3_src
 ln -s typo3_src/typo3 typo3
 ln -s typo3_src/index.php index.php
 ln -s typo3_src/_.htaccess .htaccess
+chown -R www-data:www-data /app/
 # Create first install file.
 touch FIRST_INSTALL
 echo "Your Application is ready!"

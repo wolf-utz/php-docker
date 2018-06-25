@@ -1,7 +1,7 @@
 #==========================================================
 # PHP 5.6 and Apache
 #==========================================================
-# Image:
+# Image: php:5.6-apache
 #==========================================================
 FROM php:5.6-apache
 # Install gd, mysqli, zip, opcache and soap.
@@ -24,12 +24,12 @@ RUN apt-get update && \
 	# Link html folder to app folder
 	&& rm -rf /var/www/html \
 	&& ln -s /var/www/html /app
-
 # Install xdebug.
-RUN pecl install xdebug-2.5.5 \
-	&& docker-php-ext-enable xdebug
-
+RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug
+# Install apcu.
+RUN pecl install apcu && docker-php-ext-enable apcu
 # Add addition php configuration.
 ADD .configuration/additional-php.ini   /usr/local/etc/php/conf.d/z99-additional-php.ini
 # Add apache vhost configuration.
 ADD .configuration/apache-vhost.conf   /etc/apache2/sites-enabled/000-default.conf
+ARG PHP_SOCKET=$PHP_SOCKET

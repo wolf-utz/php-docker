@@ -1,9 +1,9 @@
 #==========================================================
-# PHP 7.0 and Apache
+# PHP 5.6 and Apache
 #==========================================================
-# Image: php:7.0-apache
+# Image: php:5.6-apache
 #==========================================================
-FROM php:7.0-apache
+FROM php:5.6-apache
 # Install gd, mysqli, zip, opcache and soap.
 RUN apt-get update && \
 	apt-get install -y \
