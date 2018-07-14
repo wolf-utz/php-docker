@@ -7,6 +7,12 @@ install: down
 	docker-compose up -d --build
 
 # Framework installers
+typo3-87-composer: install
+	docker cp bin/make/typo3-87-composer.json app:/var/www/html/composer.json
+	docker exec app /bin/bash -c "composer install"
+	docker exec app /bin/bash -c "touch web/FIRST_INSTALL"
+	echo "Your Application is ready! Open https://127.0.0.1 to access!"
+
 typo3-87: install
 	docker cp bin/make/typo3-87.sh app:/typo3.sh
 	docker exec app /bin/bash -c "cd / && chmod 777 /typo3.sh && ./typo3.sh"
