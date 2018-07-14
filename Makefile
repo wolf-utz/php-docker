@@ -1,11 +1,31 @@
-ARGS = $(filter-out $@,$(MAKECMDGOALS))
 MAKEFLAGS += --silent
+run: install typo3-87
 
-typo3-76:
+install: down
+	if [ -d app ]; then rm -rf app; fi
+	if [ -d .database ]; then rm -rf .database; fi
 	docker-compose up -d --build
+
+# Framework installers
+typo3-87: install
+	docker cp bin/make/typo3-87.sh app:/typo3.sh
+	docker exec app /bin/bash -c "cd / && chmod 777 /typo3.sh && ./typo3.sh"
+
+typo3-76: install
 	docker cp bin/make/typo3-76.sh app:/typo3.sh
 	docker exec app /bin/bash -c "cd / && chmod 777 /typo3.sh && ./typo3.sh"
 
-typo3-87:
-	docker cp bin/make/typo3-87.sh app:/typo3.sh
-	docker exec app /bin/bash -c "cd / && chmod 777 /typo3.sh && ./typo3.sh"
+# Docker commands
+bash-app:
+	docker-compose up -d
+	docker-compose exec app bash
+
+build:
+	docker-compose build
+	docker-compose up -d
+
+up:
+	docker-compose up -d
+
+down:
+	docker-compose down
