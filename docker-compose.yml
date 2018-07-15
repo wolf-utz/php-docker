@@ -7,9 +7,7 @@ services:
     container_name: app
     build:
       context: .
-      dockerfile: .build/docker/app/PHP-7-0_Apache_NOXDEBUG.Dockerfile
-      args:
-          - PHP_SOCKET=php-fpm:9000
+      dockerfile: .docker/images/app/PHP-7-0_Apache.Dockerfile
     ports:
       - 80:80
       - 443:443
@@ -23,13 +21,13 @@ services:
     container_name: database
     build:
       context: .
-      dockerfile: .build/docker/database/MariaDB-10.Dockerfile
+      dockerfile: .docker/images/database/MariaDB-10.Dockerfile
     ports:
       - 3306:3306
     volumes:
       - .database:/var/lib/mysql
     env_file:
-      - .configuration/enviroment/mysql.yml
+      - .docker/configuration/mysql.yml
 
 #  #======================================================
 #  # Mailhog
