@@ -16,7 +16,7 @@ This gives you the possibility to modify the images instead of just use them.
 ## Usage with TYPO3
 * clone the git repository:
 ```bash 
-git clone https://github.com/alphajunge/php-docker.git your-project-name
+git clone https://github.com/0m3gaC0d3/php-docker.git your-project-name
 ```
 * open the newly created folder with your favorite ide/editor.
 * use  make to create a new TYPO3 project:
