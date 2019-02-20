@@ -7,8 +7,9 @@ services:
     container_name: app
     build:
       context: .
-      #dockerfile: .docker/images/PHP-5-6_Apache.Dockerfile
-      dockerfile: .docker/images/PHP-7-0_Apache.Dockerfile
+#      dockerfile: .docker/images/PHP-5-6_Apache.Dockerfile
+#      dockerfile: .docker/images/PHP-7-0_Apache.Dockerfile
+      dockerfile: .docker/images/PHP-7-2_Apache.Dockerfile
     ports:
       - 80:80
       - 443:443
