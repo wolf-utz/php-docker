@@ -7,28 +7,29 @@ services:
     container_name: app
     build:
       context: .
-      dockerfile: .docker/images/app/PHP-7-0_Apache.Dockerfile
+      #dockerfile: .docker/images/PHP-5-6_Apache.Dockerfile
+      dockerfile: .docker/images/PHP-7-0_Apache.Dockerfile
     ports:
       - 80:80
       - 443:443
     volumes:
       - ./app:/app:cached
-
   #======================================================
   # Database
   #======================================================
-  database:
-    container_name: database
-    build:
-      context: .
-      dockerfile: .docker/images/database/MariaDB-10.Dockerfile
+  db:
+    container_name: db
+    image: mariadb:10.1
+    command: mysqld --character-set-server=utf8
     ports:
       - 3306:3306
     volumes:
       - .database:/var/lib/mysql
-    env_file:
-      - .docker/configuration/mysql.yml
-
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=1234
+      - MYSQL_DATABASE=application
 #  #======================================================
 #  # Mailhog
 #  #======================================================
@@ -37,7 +38,6 @@ services:
 #    image: mailhog/mailhog
 #    ports:
 #      - 8025:8025
-
 #  #======================================================
 #  # Adminer
 #  #======================================================
